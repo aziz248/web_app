@@ -3,14 +3,14 @@ export interface Question {
   question: string;
   options: string[];
   correctAnswer: number;
-  difficulty: 'easy' | 'medium' | 'hard';
+  difficulty: "easy" | "medium" | "hard";
 }
 
 export interface User {
   name: string;
   rank: number;
   score: number;
-  level: 'Beginner' | 'Explorer' | 'Master';
+  level: "Beginner" | "Explorer" | "Master";
 }
 
 export interface QuizState {

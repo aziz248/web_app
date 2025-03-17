@@ -3,11 +3,15 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
 }
 
 @layer base {
   :root {
-    background-color: theme('colors.pink.50');
+    background-color: theme("colors.pink.50");
   }
 }

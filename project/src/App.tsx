@@ -1,14 +1,20 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { Quiz } from './components/Quiz';
-import { Leaderboard } from './components/Leaderboard';
-import { Navbar } from './components/Navbar';
-import { AuthForm } from './components/AuthForm';
-import { ConfirmEmailPage } from './components/ConfirmEmailPage';
-import Cookies from 'js-cookie';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { Quiz } from "./components/Quiz";
+import { Leaderboard } from "./components/Leaderboard";
+import { Navbar } from "./components/Navbar";
+import { AuthForm } from "./components/AuthForm";
+import { ConfirmEmailPage } from "./components/ConfirmEmailPage";
+import { EmailConfirmationHandler } from "./components/EmailConfirmationHandler";
+import Cookies from "js-cookie";
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
-  const username = Cookies.get('username');
+  const username = Cookies.get("username");
   return username ? children : <Navigate to="/login" />;
 }
 
@@ -26,8 +32,12 @@ function App() {
               element={
                 <PrivateRoute>
                   <div className="text-center">
-                    <h1 className="text-4xl font-bold text-pink-600 mb-4">Welcome to KidsLearn!</h1>
-                    <p className="text-gray-700 mb-8">Choose a quiz level to start learning</p>
+                    <h1 className="text-4xl font-bold text-pink-600 mb-4">
+                      Welcome to Petit Suisse!
+                    </h1>
+                    <p className="text-gray-700 mb-8">
+                      Choose a quiz level to start learning
+                    </p>
                     {/* Quiz level selection will be added here */}
                   </div>
                 </PrivateRoute>
@@ -37,7 +47,7 @@ function App() {
               path="/quizzes"
               element={
                 <PrivateRoute>
-                  <Quiz questions={[]} onComplete={() => {}} />
+                  <Quiz onComplete={() => {}} />
                 </PrivateRoute>
               }
             />
@@ -45,11 +55,15 @@ function App() {
               path="/leaderboard"
               element={
                 <PrivateRoute>
-                  <Leaderboard users={[]} />
+                  <Leaderboard />
                 </PrivateRoute>
               }
             />
             <Route path="/confirm-email" element={<ConfirmEmailPage />} />
+            <Route
+              path="/auth/confirm"
+              element={<EmailConfirmationHandler />}
+            />
           </Routes>
         </div>
       </div>

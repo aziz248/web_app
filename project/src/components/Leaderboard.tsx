@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Trophy, Award, Medal } from 'lucide-react';
-import { supabase } from '../lib/supabase';
-import { Profile } from '../types';
+import React, { useEffect, useState } from "react";
+import { Trophy, Award, Medal } from "lucide-react";
+import { supabase } from "../lib/supabase";
+import { Profile } from "../types";
 
 export function Leaderboard() {
   const [users, setUsers] = useState<Profile[]>([]);
@@ -12,15 +12,15 @@ export function Leaderboard() {
     async function fetchLeaderboard() {
       try {
         const { data, error } = await supabase
-          .from('profiles')
-          .select('*')
-          .order('total_score', { ascending: false })
+          .from("profiles")
+          .select("*")
+          .order("total_score", { ascending: false })
           .limit(10);
 
         if (error) throw error;
         setUsers(data);
       } catch (err) {
-        setError(err.message);
+        setError((err as Error).message);
       } finally {
         setLoading(false);
       }

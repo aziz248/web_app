@@ -1,17 +1,17 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Brain, LogOut } from 'lucide-react';
-import { supabase } from '../lib/supabase';
-import Cookies from 'js-cookie';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Brain, LogOut } from "lucide-react";
+import { supabase } from "../lib/supabase";
+import Cookies from "js-cookie";
 
 export function Navbar() {
   const navigate = useNavigate();
-  const username = Cookies.get('username');
+  const username = Cookies.get("username");
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    Cookies.remove('username');
-    navigate('/login');
+    Cookies.remove("username");
+    navigate("/login");
   };
 
   return (
@@ -24,12 +24,15 @@ export function Navbar() {
               <span className="text-xl font-bold text-pink-600">KidsLearn</span>
             </Link>
           </div>
-          
+
           <div className="flex items-center gap-6">
             <Link to="/quizzes" className="text-gray-700 hover:text-pink-600">
               Quizzes
             </Link>
-            <Link to="/leaderboard" className="text-gray-700 hover:text-pink-600">
+            <Link
+              to="/leaderboard"
+              className="text-gray-700 hover:text-pink-600"
+            >
               Leaderboard
             </Link>
             {username ? (
